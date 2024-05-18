@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  MovieView.swift
 //  SwiftUIMovie
 //
 //  Created by Tinh Nguyen on 18/5/24.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct MovieView: View {
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 ForEach(0..<10) { _ in
-                    MainCell()
+                    MovieCell()
                 }
             }
             .navigationTitle("Movie")
@@ -31,5 +31,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    MovieView()
 }

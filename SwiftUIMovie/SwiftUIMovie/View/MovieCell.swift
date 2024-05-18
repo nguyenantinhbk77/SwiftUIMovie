@@ -1,5 +1,5 @@
 //
-//  MainCell.swift
+//  MovieCell.swift
 //  SwiftUIMovie
 //
 //  Created by Tinh Nguyen on 18/5/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainCell: View {
+struct MovieCell: View {
     var body: some View {
         VStack {
             HStack {
@@ -44,5 +44,5 @@ struct MainCell: View {
 }
 
 #Preview {
-    MainCell()
+    MovieCell()
 }
