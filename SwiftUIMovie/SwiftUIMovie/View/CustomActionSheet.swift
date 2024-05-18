@@ -9,6 +9,11 @@ import SwiftUI
 
 struct CustomActionSheet: View {
     
+    @Binding var showCustomActionSheet: Bool
+    
+    var sortByTitle: (() -> Void)?
+    var sortByReleaseDate: (() -> Void)?
+    
     @State private var cardOffSet: CGSize = CGSize(width: 0, height: Constant.Screen.height)
     
     var body: some View {
@@ -19,6 +24,7 @@ struct CustomActionSheet: View {
                 .onTapGesture {
                     withAnimation {
                         cardOffSet.height = Constant.Screen.height
+                        showCustomActionSheet = false
                     }
                 }
             
@@ -30,11 +36,15 @@ struct CustomActionSheet: View {
                     .frame(width: Constant.Screen.width * 0.9, height: Constant.Screen.height * 0.12)
                     .overlay {
                         VStack {
-                            buttonWithText(title: "Title", weight: .medium, color: .gray)
+                            buttonWithText(title: "Title", weight: .medium, color: .gray) {
+                                sortByTitle?()
+                            }
                             
                             Divider()
                             
-                            buttonWithText(title: "Released Date", weight: .medium, color: .gray)
+                            buttonWithText(title: "Released Date", weight: .medium, color: .gray) {
+                                sortByReleaseDate?()
+                            }
                         }
                     }
                 
@@ -43,7 +53,7 @@ struct CustomActionSheet: View {
                     .frame(width: Constant.Screen.width * 0.9, height: Constant.Screen.height * 0.065)
                     .overlay {
                         VStack {
-                            buttonWithText(title: "Cancel", weight: .medium, color: .black)
+                            buttonWithText(title: "Cancel", weight: .medium, color: .black, completion: nil)
                         }
                     }
                
@@ -57,12 +67,14 @@ struct CustomActionSheet: View {
         }
     }
     
-    func buttonWithText(title: String, weight: Font.Weight, color: Color) -> some View {
+    func buttonWithText(title: String, weight: Font.Weight, color: Color, completion: (() -> Void)?) -> some View {
         return Button {
             Logger.log("Title Tapped")
             withAnimation {
                 cardOffSet.height = Constant.Screen.height
+                showCustomActionSheet = false
             }
+            completion?()
         } label: {
             Text(title)
                 .frame(width: Constant.Screen.width * 0.9)
@@ -73,5 +85,6 @@ struct CustomActionSheet: View {
 }
 
 #Preview {
-    CustomActionSheet()
+    @State var showCustomActionSheet: Bool = false
+    return CustomActionSheet(showCustomActionSheet: $showCustomActionSheet)
 }
