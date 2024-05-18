@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct MovieCell: View {
+    
+    let movie: MovieModel
+    
     var body: some View {
         VStack {
             HStack {
-                Image("Tenet")
+                Image(movie.title.coverImage)
                     .resizable()
                     .frame(width: Constant.Screen.width/4, height: Constant.Screen.height/6)
                     .aspectRatio(contentMode: .fill)
@@ -19,9 +22,9 @@ struct MovieCell: View {
                     .shadow(color: .black, radius: 2.5)
                 
                 VStack {
-                    textStyle(text: "Movie Title with long title",
+                    textStyle(text: "\(movie.title.rawValue) (\(movie.formattedReleaseData))",
                               alignment: .bottomLeading, weight: .bold, color: .black)
-                    textStyle(text: "Movie description with long textttttttttttttttttttttt",
+                    textStyle(text: "\(movie.duration) - \(movie.genre)",
                               alignment: .topLeading, weight: .regular, color: .gray)
                 }
 
@@ -44,5 +47,6 @@ struct MovieCell: View {
 }
 
 #Preview {
-    MovieCell()
+    let data = MovieModel(title: .spiderMan, description: "", rating: "", duration: "", genre: "", releasedDate: "", trailerLink: "")
+    return MovieCell(movie: data)
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieModel: Codable {
+struct MovieModel: Codable, Identifiable {
     let title: MovieTitle
     let description, rating, duration: String
     let genre, releasedDate: String

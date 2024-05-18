@@ -14,8 +14,8 @@ struct MovieView: View {
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
-                ForEach(0..<10) { _ in
-                    MovieCell()
+                ForEach(viewmodel.movieList) { movie in
+                    MovieCell(movie: movie)
                 }
             }
             .navigationTitle("Movie")
