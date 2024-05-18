@@ -9,7 +9,24 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ScrollView(.vertical, showsIndicators: false) {
+                ForEach(0..<10) { _ in
+                    MainCell()
+                }
+            }
+            .navigationTitle("Movie")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                Button {
+                    
+                } label: {
+                    Text("Sort")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundStyle(.black)
+                }
+            }
+        }
     }
 }
 
