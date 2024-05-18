@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MovieView: View {
+    
+    @StateObject var viewmodel = MovieViewModel()
+    
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
@@ -24,6 +27,15 @@ struct MovieView: View {
                     Text("Sort")
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundStyle(.black)
+                }
+            }
+            .onAppear {
+                Task {
+                    do {
+                        try await viewmodel.loadMovie()
+                    } catch {
+                        Logger.log("could not load movies")
+                    }
                 }
             }
         }

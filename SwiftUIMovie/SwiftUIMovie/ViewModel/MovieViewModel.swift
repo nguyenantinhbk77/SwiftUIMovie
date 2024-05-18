@@ -10,17 +10,44 @@ import Foundation
 
 class MovieViewModel: ObservableObject {
     
-    func readLocalJSON(file name: String)  async throws -> Data? {
-        
-        do {
-            if let filePath = Bundle.main.path(forResource: name, ofType: "json") {
-                let fileURL = URL(filePath: filePath)
-                let data = try Data(contentsOf: fileURL)
+    @Published var movieList = [MovieModel]()
+    
+    let api: MovieFetch
+    var cancellables = Set<AnyCancellable>()
+    
+    init(api: MovieFetch = DefaultMovieFetch()) {
+        self.api = api
+    }
+    
+    func readLocalJson(file name: String) async throws -> Data? {
+        if let filePath = Bundle.main.path(forResource: name, ofType: "json") {
+            do {
+                let fileUrl = URL(filePath: filePath)
+                let data = try Data(contentsOf: fileUrl)
                 return data
+            } catch {
+                Logger.log("Error reading JSON file: \(error.localizedDescription)")
+                throw error
             }
-        } catch {
-            Logger.log("error is: \(error.localizedDescription)")
+        } else {
+            Logger.log("File not found: \(name).json")
         }
         return nil
+    }
+
+    @MainActor
+    func loadMovie() async throws {
+        let jsonData = try await readLocalJson(file: "MovieList")
+        guard let data = jsonData else { return }
+        
+        api.fetchMovie(from: data)
+            .sink { completion in
+                Logger.log("status: \(completion)")
+            } receiveValue: { [weak self] movies in
+                guard let self = self else { return }
+                Logger.log("array: \(movies)")
+                movieList = movies
+            }
+            .store(in: &cancellables)
     }
 }
