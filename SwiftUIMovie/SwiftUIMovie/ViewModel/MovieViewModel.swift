@@ -11,6 +11,7 @@ import Foundation
 class MovieViewModel: ObservableObject {
     
     @Published var movieList = [MovieModel]()
+    @Published var showCustomActionSheet = false
     
     let api: MovieFetch
     var cancellables = Set<AnyCancellable>()
@@ -49,5 +50,13 @@ class MovieViewModel: ObservableObject {
                 movieList = movies
             }
             .store(in: &cancellables)
+    }
+    
+    func sortByTitle() {
+        movieList.sort { $0.title.rawValue < $1.title.rawValue }
+    }
+    
+    func sortByReleaseDate() {
+        movieList.sort { $0.releasedDate < $1.releasedDate }
     }
 }

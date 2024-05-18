@@ -10,7 +10,6 @@ import SwiftUI
 struct MovieView: View {
     
     @StateObject var viewmodel = MovieViewModel()
-    @State private var showCustomActionSheet = false
     
     var body: some View {
         NavigationStack {
@@ -23,7 +22,7 @@ struct MovieView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 Button {
-                    showCustomActionSheet = true
+                    viewmodel.showCustomActionSheet = true
                 } label: {
                     Text("Sort")
                         .font(.system(size: 16, weight: .semibold))
@@ -40,11 +39,11 @@ struct MovieView: View {
                 }
             }
             .overlay {
-                if showCustomActionSheet {
-                    CustomActionSheet(showCustomActionSheet: $showCustomActionSheet) {
-                        Logger.log("Calling sortByTItle")
+                if viewmodel.showCustomActionSheet {
+                    CustomActionSheet(showCustomActionSheet: $viewmodel.showCustomActionSheet) {
+                        viewmodel.sortByTitle()
                     } sortByReleaseDate: {
-                        Logger.log("Calling sortByDate")
+                        viewmodel.sortByReleaseDate()
                     }
                 }
 
