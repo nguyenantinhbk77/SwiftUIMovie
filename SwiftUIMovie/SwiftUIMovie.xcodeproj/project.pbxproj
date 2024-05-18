@@ -18,6 +18,7 @@
 		19EAA9132BF903BD00BBB609 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EAA9122BF903BD00BBB609 /* Logger.swift */; };
 		19EAA9162BF9050B00BBB609 /* FetchMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EAA9152BF9050B00BBB609 /* FetchMovie.swift */; };
 		19EAA9172BF90B0800BBB609 /* MovieList.json in Resources */ = {isa = PBXBuildFile; fileRef = 19EAA9072BF8CBD200BBB609 /* MovieList.json */; };
+		19EAA9192BF90F0400BBB609 /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EAA9182BF90F0400BBB609 /* CustomActionSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		19EAA9102BF901E700BBB609 /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		19EAA9122BF903BD00BBB609 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		19EAA9152BF9050B00BBB609 /* FetchMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMovie.swift; sourceTree = "<group>"; };
+		19EAA9182BF90F0400BBB609 /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				19EAA9042BF8C3F700BBB609 /* MovieView.swift */,
 				19EAA9082BF8CE8D00BBB609 /* MovieCell.swift */,
+				19EAA9182BF90F0400BBB609 /* CustomActionSheet.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				19EAA9052BF8C3F700BBB609 /* MovieView.swift in Sources */,
 				19EAA8F52BF8C38200BBB609 /* SwiftUIMovieApp.swift in Sources */,
 				19EAA90E2BF8FF0100BBB609 /* MovieModel.swift in Sources */,
+				19EAA9192BF90F0400BBB609 /* CustomActionSheet.swift in Sources */,
 				19EAA9092BF8CE8D00BBB609 /* MovieCell.swift in Sources */,
 				19EAA9132BF903BD00BBB609 /* Logger.swift in Sources */,
 				19EAA9162BF9050B00BBB609 /* FetchMovie.swift in Sources */,
